@@ -323,7 +323,7 @@ This project demonstrates practical implementation of
 
 Graduate Student | AI Engineer | Full Stack Developer
 
-- LinkedIn: *(Add your LinkedIn URL)*
+- LinkedIn: https://www.linkedin.com/in/sarthak-agrawal-097b591aa/
 - GitHub: https://github.com/sarthak3248
 
 ---
