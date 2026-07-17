@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- Heading -->
+
+    <div class="text-center mb-5">
+
+        <h1 class="display-4 fw-bold">
+
+            📩 Contact Me
+
+        </h1>
+
+        <p class="lead text-muted">
+
+            Have a question, suggestion, collaboration idea,
+            or just want to say hello? I'd love to hear from you!
+
+        </p>
+
+    </div>
+
+    <div class="row g-5">
+
+        <!-- Contact Form -->
+
+        <div class="col-lg-7">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-primary text-white">
+
+                    Send a Message
+
+                </div>
+
+                <div class="card-body">
+
+                    {% if messages %}
+
+                        {% for message in messages %}
+
+                            <div class="alert alert-success">
+
+                                {{ message }}
+
+                            </div>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        {{ form.as_p }}
+
+                        <button
+                            class="btn btn-primary">
+
+                            📨 Send Message
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Contact Information -->
+
+        <div class="col-lg-5">
+
+            <div class="card shadow mb-4">
+
+                <div class="card-header bg-dark text-white">
+
+                    👨‍💻 Developer
+
+                </div>
+
+                <div class="card-body text-center">
+
+                    <img
+                        src="{% static 'images/developer_pic.jpeg' %}"
+                        class="rounded-circle shadow mb-3"
+                        width="150"
+                        height="150"
+                        style="object-fit:cover;"
+                    >
+
+                    <h4>
+
+                        Sarthak Agrawal
+
+                    </h4>
+
+                    <p>
+
+                        AI & Machine Learning Engineer
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="card shadow">
+
+                <div class="card-header bg-success text-white">
+
+                    🌐 Connect With Me
+
+                </div>
+
+                <div class="card-body">
+
+                    <p>
+
+                        📧 <strong>Email:</strong><br>
+
+                        sarthak.3248@gmail.com
+
+                    </p>
+
+                    <p>
+
+                        💼 <strong>LinkedIn:</strong><br>
+
+                        <a
+                            href="https://www.linkedin.com/in/sarthak-agrawal-097b591aa/"
+                            target="_blank">
+
+                            Visit Profile
+
+                        </a>
+
+                    </p>
+
+                    <p>
+
+                        💻 <strong>GitHub:</strong><br>
+
+                        <a
+                            href="https://github.com/sarthak3248"
+                            target="_blank">
+
+                            View Projects
+
+                        </a>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

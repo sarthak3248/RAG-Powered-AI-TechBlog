@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<h2 class="mb-4">
+    👋 Welcome, {{ user.username }}
+</h2>
+
+<div class="row mb-4">
+
+<div class="col-md-3">
+<div class="card text-center shadow">
+<div class="card-body">
+
+<h5>Articles Viewed</h5>
+
+<h2>{{ view_count }}</h2>
+
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card text-center shadow">
+<div class="card-body">
+
+<h5>Likes</h5>
+
+<h2>{{ like_count }}</h2>
+
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card text-center shadow">
+<div class="card-body">
+
+<h5>Bookmarks</h5>
+
+<h2>{{ bookmark_count }}</h2>
+
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card text-center shadow">
+<div class="card-body">
+
+<h5>Reading Time</h5>
+
+<h5>{{ reading_time }}</h5>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<hr>
+
+<h3>📖 Recently Viewed</h3>
+
+<ul class="list-group mb-4">
+
+{% for item in recent_views %}
+
+<li class="list-group-item">
+
+<a href="{% url 'post_detail' item.post.slug %}">
+{{ item.post.title }}
+</a>
+
+</li>
+
+{% empty %}
+
+<li class="list-group-item">
+No viewed articles yet.
+</li>
+
+{% endfor %}
+
+<h3 class="mt-5">
+    🎯 Your Interests
+</h3>
+
+<table class="table table-striped">
+
+<thead>
+
+<tr>
+
+<th>Category</th>
+
+<th>Preference Score</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for category, score in category_profile.items %}
+
+<tr>
+
+<td>{{ category }}</td>
+
+<td>{{ score }}</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="2">
+
+No interaction data yet.
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+
+
+</ul>
+
+<h3>❤️ Recently Liked</h3>
+
+<ul class="list-group mb-4">
+
+{% for item in recent_likes %}
+
+<li class="list-group-item">
+
+<a href="{% url 'post_detail' item.post.slug %}">
+{{ item.post.title }}
+</a>
+
+</li>
+
+{% empty %}
+
+<li class="list-group-item">
+No liked articles.
+</li>
+
+{% endfor %}
+
+</ul>
+
+<h3>🔖 Saved Articles</h3>
+
+<ul class="list-group mb-4">
+
+{% for item in recent_bookmarks %}
+
+<li class="list-group-item">
+
+<a href="{% url 'post_detail' item.post.slug %}">
+{{ item.post.title }}
+</a>
+
+</li>
+
+{% empty %}
+
+<li class="list-group-item">
+No bookmarks yet.
+</li>
+
+{% endfor %}
+
+</ul>
+
+<h3 class="mt-5">🤖 Recommended For You</h3>
+
+<div class="list-group mb-5">
+
+    {% for post in recommended_posts %}
+
+        <a href="{% url 'post_detail' post.slug %}"
+        class="list-group-item list-group-item-action">
+
+            <strong>{{ post.title }}</strong><br>
+
+            <small>
+                {{ post.category.name }}
+            </small>
+
+        </a>
+
+    {% empty %}
+
+        <div class="alert alert-secondary">
+
+            Read, like or bookmark more posts to
+            improve your recommendations.
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,330 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- Hero Section -->
+
+    <div class="text-center mb-5">
+
+        <h1 class="display-4 fw-bold">
+
+            🚀 About AI TechBlog
+
+        </h1>
+
+        <p class="lead text-muted">
+
+            A modern AI-powered blogging platform built with Django,
+            Machine Learning, NLP, and Transformer Models.
+
+        </p>
+
+    </div>
+
+    <!-- About Project -->
+
+    <div class="row align-items-center mb-5">
+
+        <div class="col-lg-7">
+
+            <h2 class="fw-bold">
+
+                📖 About the Project
+
+            </h2>
+
+            <p class="mt-3">
+
+                AI TechBlog is an intelligent blogging platform designed to
+                demonstrate how Artificial Intelligence can enhance user
+                experience through personalized recommendations, intelligent
+                content summarization, AI-powered moderation, and user behavior
+                analytics.
+
+            </p>
+
+            <p>
+
+                Unlike a traditional blog, this platform integrates modern
+                Machine Learning techniques such as semantic embeddings,
+                recommendation systems, NLP models, and transformer-based AI
+                services to create a smarter reading experience.
+
+            </p>
+
+        </div>
+
+        <div class="col-lg-5">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-primary text-white">
+
+                    🛠 Technology Stack
+
+                </div>
+
+                <div class="card-body">
+
+                    <span class="badge bg-primary m-1">Python</span>
+                    <span class="badge bg-success m-1">Django</span>
+                    <span class="badge bg-dark m-1">Bootstrap 5</span>
+                    <span class="badge bg-warning text-dark m-1">SQLite</span>
+                    <span class="badge bg-danger m-1">PyTorch</span>
+                    <span class="badge bg-info text-dark m-1">Transformers</span>
+                    <span class="badge bg-secondary m-1">Sentence Transformers</span>
+                    <span class="badge bg-primary m-1">Scikit-learn</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- AI Features -->
+
+    <h2 class="text-center mb-4">
+
+        🤖 AI Features
+
+    </h2>
+
+    <div class="row g-4 mb-5">
+
+        <div class="col-md-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h5>🎯 Personalized Recommendations</h5>
+                    <p>Hybrid recommendation engine based on user interactions and semantic similarity.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h5>📝 AI Article Summaries</h5>
+                    <p>Automatically generated summaries using transformer-based NLP models.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h5>🛡 Toxicity Detection</h5>
+                    <p>Machine Learning powered moderation for identifying inappropriate comments.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h5>📊 AI Dashboard</h5>
+                    <p>Monitor user engagement, recommendations, and moderation statistics.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h5>📖 Reading Analytics</h5>
+                    <p>Track reading time, likes, bookmarks, and user preferences.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h5>🧠 Semantic Search (Coming Soon)</h5>
+                    <p>Search articles using meaning instead of exact keywords.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Developer Section -->
+
+    <hr class="my-5">
+
+    <div class="row align-items-center">
+
+        <div class="col-md-4 text-center">
+
+            <img
+                src="{% static 'images/developer_pic.jpeg' %}"
+                alt="Sarthak Agrawal"
+                class="img-fluid rounded-circle shadow-lg"
+                style="
+                    width:250px;
+                    height:250px;
+                    object-fit:cover;
+                    border:5px solid #0d6efd;
+                "
+            >
+
+        </div>
+
+        <div class="col-md-8">
+
+            <h2 class="fw-bold">
+
+                👨‍💻 About the Developer
+
+            </h2>
+
+            <h4>
+
+                Sarthak Agrawal
+
+            </h4>
+
+            <p>
+
+                I'm an aspiring <strong>AI & Machine Learning Engineer</strong>
+                passionate about building intelligent AI applications that
+                combine software engineering with modern AI technologies.
+
+            </p>
+
+            <p>
+
+                My interests include Machine Learning, Deep Learning,
+                NLP, Large Language Models (LLMs), Recommendation Systems,
+                Computer Vision, and Full-Stack Development.
+
+            </p>
+
+            <div class="mt-3">
+
+                <span class="badge bg-primary m-1">Python</span>
+                <span class="badge bg-success m-1">Django</span>
+                <span class="badge bg-danger m-1">Machine Learning</span>
+                <span class="badge bg-warning text-dark m-1">NLP</span>
+                <span class="badge bg-info text-dark m-1">LLMs</span>
+                <span class="badge bg-dark m-1">PyTorch</span>
+
+            </div>
+
+            <div class="mt-4">
+
+                <a href="https://github.com/sarthak3248"
+                   target="_blank"
+                   class="btn btn-dark">
+
+                    GitHub
+
+                </a>
+
+                <a href="https://www.linkedin.com/in/sarthak-agrawal-097b591aa/"
+                   target="_blank"
+                   class="btn btn-primary">
+
+                    LinkedIn
+
+                </a>
+
+                <a href="#"
+                   class="btn btn-success">
+
+                    📄 Resume
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Project Highlights -->
+
+    <hr class="my-5">
+
+    <h2 class="text-center mb-4">
+
+        🚀 Project Highlights
+
+    </h2>
+
+    <div class="row text-center">
+
+        <div class="col-md-3">
+
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <h2>8+</h2>
+
+                    <p>AI Modules</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <h2>15+</h2>
+
+                    <p>Django Features</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <h2>100%</h2>
+
+                    <p>Built From Scratch</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <h2>∞</h2>
+
+                    <p>Learning Never Stops</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

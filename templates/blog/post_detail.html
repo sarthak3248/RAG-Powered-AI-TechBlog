@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-10">
+
+            <img src="{{ post.featured_image.url }}"
+                 class="img-fluid rounded shadow mb-4"
+                 alt="{{ post.title }}">
+
+            <span class="badge bg-primary">
+                {{ post.category }}
+            </span>
+
+            <h1 class="mt-3">
+                {{ post.title }}
+            </h1>
+
+            {% if post.summary %}
+
+            <div class="card border-success shadow-sm my-4">
+
+                <div class="card-header bg-success text-white">
+
+                    🤖 AI Summary
+
+                </div>
+
+                <div class="card-body">
+
+                    <p class="mb-0">
+
+                        {{ post.summary }}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+            
+            <div class="mt-4">
+
+            <button
+                id="like-button"
+                class="btn btn-danger">
+
+                {% if liked %}
+                    ❤️ Liked
+                {% else %}
+                    🤍 Like
+                {% endif %}
+
+            </button>
+            
+            <button
+                id="bookmark-button"
+                class="btn btn-primary ms-2">
+
+                {% if bookmarked %}
+                    ✅ Saved
+                {% else %}
+                    🔖 Save
+                {% endif %}
+
+            </button>
+
+            <span id="like-count" class="ms-2">
+
+                {{ like_count }} Likes
+
+            </span>
+
+        </div>
+
+            <p class="text-muted">
+
+                By <strong>{{ post.author }}</strong>
+
+                |
+
+                {{ post.created_at|date:"F d, Y" }}
+
+            </p>
+
+            <hr>
+
+            <div class="mt-4">
+
+                {{ post.content|linebreaks }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<hr>
+
+<h3>📚 Similar Articles</h3>
+
+<div class="list-group">
+
+{% for article in similar_posts %}
+
+    <a href="{% url 'post_detail' article.slug %}"
+       class="list-group-item list-group-item-action">
+
+        {{ article.title }}
+
+    </a>
+
+{% empty %}
+
+    <p>No recommendations yet.</p>
+
+{% endfor %}
+
+</div>
+
+<script>
+
+const likeButton = document.getElementById("like-button");
+
+if (likeButton){
+
+    likeButton.addEventListener("click", function(){
+
+        fetch("{% url 'toggle_like' post.slug %}", {
+
+            method: "POST",
+
+            headers:{
+
+                "X-CSRFToken":"{{ csrf_token }}"
+            }
+
+        })
+
+        .then(response => response.json())
+
+        .then(data => {
+
+            document.getElementById("like-count").innerText =
+                data.like_count + " Likes";
+
+            if(data.liked){
+
+                likeButton.innerHTML = "❤️ Liked";
+
+            }
+
+            else{
+
+                likeButton.innerHTML = "🤍 Like";
+
+            }
+
+        });
+
+    });
+
+}
+
+</script>
+
+<script>
+    const bookmarkUrl = "{% url 'toggle_bookmark' post.slug %}";
+    const csrfToken = "{{ csrf_token }}";
+</script>
+
+<script src="{% static 'js/bookmarks.js' %}"></script>
+
+<hr class="my-5">
+
+<h3>💬 Leave a Comment</h3>
+
+{% if user.is_authenticated %}
+
+<form method="POST" action="{% url 'add_comment' post.slug %}">
+
+    {% csrf_token %}
+
+    {{ comment_form.as_p }}
+
+    <button
+        class="btn btn-primary">
+
+        Post Comment
+
+    </button>
+
+</form>
+
+{% else %}
+
+<div class="alert alert-warning">
+
+Please
+<a href="{% url 'login' %}">
+
+login
+
+</a>
+
+to comment.
+
+</div>
+
+{% endif %}
+
+<hr>
+
+<hr>
+
+<h3>💬 Comments ({{ comments.count }})</h3>
+
+{% for comment in comments %}
+
+<div class="card mb-3">
+
+    <div class="card-body">
+
+        <h6>
+            {{ comment.user.username }}
+
+            <small class="text-muted ms-2">
+                {{ comment.created_at|date:"M d, Y H:i" }}
+            </small>
+
+        </h6>
+
+        <p class="mt-2">
+            {{ comment.content }}
+        </p>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<div class="alert alert-light">
+    No comments yet. Be the first to comment!
+</div>
+
+{% endfor %}
+
+{% endblock %}
+

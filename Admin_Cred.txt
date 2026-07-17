@@ -1,0 +1,10 @@
+#Superuser Creds
+
+Username: Sarthak1111
+Password: Django1234
+
+
+#Test User Login Creds
+
+Username: Test1234
+Password: pass@1111

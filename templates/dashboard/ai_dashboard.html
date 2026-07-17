@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h1 class="mb-4">
+        🤖 AI Control Center
+    </h1>
+
+    <p class="text-muted">
+        Monitor user activity, recommendation system, and AI moderation.
+    </p>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h2>{{ total_posts }}</h2>
+                    <p>Total Articles</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h2>{{ total_views }}</h2>
+                    <p>Total Views</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h2>{{ total_likes }}</h2>
+                    <p>Total Likes</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h2>{{ total_bookmarks }}</h2>
+                    <p>Total Bookmarks</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row g-4 mt-3">
+
+        <div class="col-md-6">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+                    📚 Reading Analytics
+                </div>
+
+                <div class="card-body">
+
+                    <h3>{{ reading_hours }} hrs</h3>
+
+                    <p>Total Reading Time</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="card shadow">
+
+                <div class="card-header">
+                    🛡 AI Comment Moderation
+                </div>
+
+                <div class="card-body">
+
+                    <p>
+                        Approved:
+                        <strong>{{ approved_comments }}</strong>
+                    </p>
+
+                    <p>
+                        Flagged:
+                        <strong>{{ flagged_comments }}</strong>
+                    </p>
+
+                    <p>
+                        Avg Toxicity:
+                        <strong>{{ avg_toxicity }}</strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card shadow mt-4">
+
+        <div class="card-header">
+            🔥 Most Popular Categories
+        </div>
+
+        <div class="card-body">
+
+            <table class="table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Category</th>
+
+                        <th>Articles</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for category in popular_categories %}
+
+                    <tr>
+
+                        <td>{{ category.name }}</td>
+
+                        <td>{{ category.total_posts }}</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
