@@ -2,8 +2,7 @@ import numpy as np
 from blog.models import PostEmbedding
 from blog.ai.embedding_service import EmbeddingService
 
-class Retriver:
-    
+class Retriver:    
     @staticmethod
     def retrive(query, top_k=3):
         
