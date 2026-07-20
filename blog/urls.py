@@ -22,5 +22,7 @@ urlpatterns = [
     path("ai-dashboard/",views.ai_dashboard,name="ai_dashboard",),
     path("about/",views.about,name="about",),
     path("contact/", views.contact, name="contact",),
+    path("chat/", views.chatbot, name="chatbot",),
+    path("chat/api/", views.chatbot_api, name="chat_api"),
 ]
 

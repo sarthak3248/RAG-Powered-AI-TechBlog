@@ -20,6 +20,9 @@ from django.shortcuts import redirect
 from .ai.toxicity_service import ToxicityService
 from django.db.models import Avg, Sum, Count
 from django.contrib.admin.views.decorators import staff_member_required
+from django.http import JsonResponse
+import json
+from blog.ai.chatbot import ChatbotService
 
 
 # Create your views here.
@@ -428,3 +431,32 @@ def custom_404(request, exception):
 
 def custom_500(request):
     return render(request, "500.html", status=500)    
+
+@login_required
+def chatbot(request):
+    return render(request, "chatbot.html")
+
+
+@login_required
+def chatbot_api(request):
+    
+    if request.method != "POST":
+        return JsonResponse(
+            {"error": "POST request required"},
+            status = 400
+        )
+    
+    data = json.loads(request.body)
+    
+    question = data.get("message", "").strip()
+    
+    if not question:
+        return JsonResponse(
+            {"error": "Please enter a question..."}
+        )    
+    
+    answer = ChatbotService.answer(question)
+    
+    return JsonResponse({
+        "response": answer
+    })    

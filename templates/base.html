@@ -10,7 +10,7 @@
 
     <title>
         {% block title %}
-        TechBlog
+        Sarthak's Technology Hub
         {% endblock %}
     </title>
 
@@ -102,6 +102,13 @@
                             Contact
                         </a>
                     </li>
+
+                    <li>
+                        <a class="nav-ling" href="{% url 'chatbot' %}">
+                            🤖 AI Assistant
+                        </a>
+                    </li>
+            
 
                     {% if user.is_authenticated %}
 
