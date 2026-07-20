@@ -14,7 +14,7 @@
         style="
             height:500px;
             overflow-y:auto;
-            background:#f8f9fa;
+            background:#eef2f7; 
         ">
 
     </div>
@@ -24,14 +24,14 @@
         <input
             id="user-input"
             type="text"
-            class="form-control"
-            placeholder="Ask anything...">
+            class="form-control form-control-lg"
+            placeholder="Ask me anything about AI or this blog...">
 
         <button
             id="send-button"
             class="btn btn-primary">
 
-            Send
+            🚀 Send
 
         </button>
 
@@ -59,16 +59,26 @@ userInput.addEventListener("keypress", function(e){
 
 function appendMessage(sender, message){
 
-    const div = document.createElement("div");
+    const wrapper = document.createElement("div");
 
-    div.className = "mb-3";
+    wrapper.className =
+        sender === "🧑 You"
+        ? "text-end mb-3"
+        : "text-start mb-3";
 
-    div.innerHTML = `
-        <strong>${sender}</strong><br>
-        ${message}
+    wrapper.innerHTML = `
+        <div
+            class="d-inline-block p-3 rounded shadow-sm
+            ${sender === "🧑 You"
+                ? "bg-primary text-white"
+                : "bg-white"}"
+            style="max-width:75%;">
+            <strong>${sender}</strong><br>
+            ${message}
+        </div>
     `;
 
-    chatBox.appendChild(div);
+    chatBox.appendChild(wrapper);
 
     chatBox.scrollTop = chatBox.scrollHeight;
 
@@ -83,6 +93,9 @@ function sendMessage(){
     appendMessage("🧑 You", message);
 
     userInput.value = "";
+
+    sendButton.disabled = true;
+    sendButton.innerHTML = "Thinking...";
 
     fetch("{% url 'chat_api' %}",{
 
@@ -109,10 +122,17 @@ function sendMessage(){
     .then(data=>{
 
         appendMessage("🤖 AI", data.response);
+        sendButton.disabled = false;
+        sendButton.innerHTML = "🚀 Send";
 
     });
 
 }
+
+appendMessage(
+    "🤖 AI",
+    "Hello! I'm your AI Tech Assistant. I can answer questions about this blog or general AI topics."
+);
 
 </script>
 
