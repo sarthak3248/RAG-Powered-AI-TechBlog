@@ -8,6 +8,18 @@
         🤖 AI Tech Assistant
     </h2>
 
+    <div class="text-end mb-3">
+
+    <button
+        id="new-chat"
+        class="btn btn-outline-secondary">
+
+        🗑 New Chat
+
+    </button>
+
+    </div>
+
     <div
         id="chat-box"
         class="border rounded p-3 mb-3"
@@ -133,6 +145,36 @@ appendMessage(
     "🤖 AI",
     "Hello! I'm your AI Tech Assistant. I can answer questions about this blog or general AI topics."
 );
+
+const newChatButton = document.getElementById("new-chat");
+
+newChatButton.addEventListener("click", function(){
+
+    fetch("{% url 'clear_chat' %}",{
+
+        method:"POST",
+
+        headers:{
+            "X-CSRFToken":"{{ csrf_token }}"
+        }
+
+    })
+
+    .then(response => response.json())
+
+    .then(data =>{
+
+        chatBox.innerHTML = "";
+
+        appendMessage(
+            "🤖 AI",
+            "Hello! I'm your AI Tech Assistant. How can I help you today?"
+        );
+
+    });
+
+});
+
 
 </script>
 

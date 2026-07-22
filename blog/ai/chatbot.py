@@ -5,24 +5,15 @@ from blog.ai.llm_service import LLMService
 
 class ChatbotService:
 
-    @classmethod
-    def answer(cls, question):
+    @staticmethod
+    def answer(question, history=None):
 
-        # Retrieve relevant blog posts
-        posts = Retriver.retrive(
-            question,
-            top_k=3
-        )
+        posts = Retriver.retrive(question)
 
-        # Build RAG prompt
         prompt = PromptBuilder.build(
             question,
-            posts
+            posts,
+            history
         )
 
-        # Generate answer
-        response = LLMService.generate(
-            prompt
-        )
-
-        return response
+        return LLMService.generate(prompt)

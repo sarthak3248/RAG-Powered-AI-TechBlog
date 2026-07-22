@@ -455,8 +455,37 @@ def chatbot_api(request):
             {"error": "Please enter a question..."}
         )    
     
-    answer = ChatbotService.answer(question)
+    
+    history = request.session.get("chat_history", [])
+    
+    answer = ChatbotService.answer(
+    question,
+    history
+    )
+    
+    history.append({
+
+    "user": question,
+
+    "assistant": answer
+
+    })
+    
+    history = history[-5:]
+    
+    request.session["chat_session"] = history
+    
     
     return JsonResponse({
         "response": answer
     })    
+
+
+@login_required
+def clear_chat(request):
+    
+    request.session["chat_history"] = []
+    
+    return JsonResponse({
+        "status": "success"
+    })

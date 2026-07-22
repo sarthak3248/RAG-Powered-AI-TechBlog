@@ -24,5 +24,6 @@ urlpatterns = [
     path("contact/", views.contact, name="contact",),
     path("chat/", views.chatbot, name="chatbot",),
     path("chat/api/", views.chatbot_api, name="chat_api"),
+    path("chat/clear/", views.clear_chat, name="clear_chat"),
 ]
 
